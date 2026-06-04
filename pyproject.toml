@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "lore-dev"
+version = "0.1.0"
+description = "A fully local AI coding agent with a terminal-native TUI"
+authors = []
+packages = [{include = "lore", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+textual     = "^0.50"
+typer       = "^0.12"
+chromadb    = "^0.5"
+sqlalchemy  = "^2.0"
+gitpython   = "^3.1"
+watchdog    = "^4.0"
+tiktoken    = "^0.7"
+tree-sitter = "^0.21"
+ollama      = "^0.2"
+rich        = "^13.0"
+toml        = "^0.10"
+
+[tool.poetry.group.dev.dependencies]
+pytest       = "^8.0"
+pytest-asyncio = "^0.23"
+
+[tool.poetry.scripts]
+lore = "lore.cli:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

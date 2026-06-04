@@ -1,0 +1,25 @@
+[project]
+name = "unnamed"
+
+[model]
+agent     = "qwen2.5-coder:14b"
+watch     = "qwen2.5-coder:7b"
+embed     = "nomic-embed-text"
+ollama_url = "http://localhost:11434"
+
+[indexing]
+max_commits        = 50
+git_poll_interval  = 30
+chunk_size         = 512
+chunk_overlap      = 50
+ignore             = ["node_modules/", "__pycache__/", "dist/", ".next/", "*.lock"]
+
+[agent]
+max_tool_calls   = 30
+show_tool_calls  = true
+
+[watch]
+similarity_threshold    = 0.70
+top_k                   = 5
+terminal_buffer_lines   = 30
+interjection_cooldown   = 60
