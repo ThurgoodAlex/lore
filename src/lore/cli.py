@@ -12,6 +12,7 @@ from lore.storage.db import Commit, init_db, upsert_file, Session, IndexedFile
 from lore.ingestion.chunker import chunk_file
 from lore.ingestion.embedder import embed_batch
 from lore.storage.chroma import upsert_chunks
+from lore.app import LoreApp
 
 
 app = typer.Typer()
@@ -99,4 +100,4 @@ def status():
 
 @app.command()
 def lore():
-    typer.echo("Lore CLI is under development. Use 'lore index' to index your project and 'lore status' to check indexing status.")
+    LoreApp().run()

@@ -1,0 +1,20 @@
+$background: #1a1714;   
+$surface:       #252220; 
+$border:        #3a3530;
+$text_primary:  #e8e0d5;
+$text_muted:    #8a8078;   
+$accent:        #c4845a;  
+$accent_alt:    #7a9e7e;
+$warning:       #c9a84c;
+$error:         #b85c4a; 
+
+Screen {
+    background: $background
+}
+
+Static {
+    background: $surface;
+    color: $text_primary;
+    border: tall $border;
+    padding: 1 2
+}
