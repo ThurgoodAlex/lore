@@ -18,6 +18,12 @@ from lore.app import LoreApp
 app = typer.Typer()
 
 
+@app.callback(invoke_without_command=True)
+def main(ctx: typer.Context) -> None:
+    if ctx.invoked_subcommand is None:
+        LoreApp().run()
+
+
 def _get_suffix(chunks: list) -> str:
     source_type = chunks[0].source_type
     suffix = {"code": "code", "doc": "docs", "adr": "docs", "note": "notes"}.get(source_type, "code")
@@ -98,6 +104,3 @@ def status():
     typer.echo(f"Indexed commits: {commit_count}")
     typer.echo(f"Last indexed: {last_indexed.last_indexed if last_indexed else 'N/A'}")
 
-@app.command()
-def lore():
-    LoreApp().run()
