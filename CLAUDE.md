@@ -130,6 +130,12 @@ retriever.py query order:
 - Flag when something could have been done differently and why we chose this way
 - User is a new grad learning architecture, RAG, agent loops, and Textual TUIs
 
+## Code Quality Rules
+- Widgets own their own logic. `LoreApp` composes, binds, and routes — nothing else. No business logic, file I/O, or LLM calls in app.py.
+- No direct widget references across panes. Use post_message() for cross-pane communication.
+- One responsibility per file. If a module starts doing two unrelated things, split it.
+- Tests ship with the phase. Test chunking, retrieval, agent tools, and config loading — not widgets or glue code. If a function is pure and its output matters, test it.
+
 ## Do Not
 - Do not add cloud AI providers. Ollama only.
 - Do not write files from tool calls before user applies the diff.
