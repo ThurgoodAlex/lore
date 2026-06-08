@@ -18,3 +18,24 @@ Static {
     border: tall $border;
     padding: 1 2
 }
+
+ListView {
+    padding: 0;
+}
+
+ListItem {
+    padding: 0 1;
+}
+
+MarkdownBlock {
+    padding: 0;
+    border: none;
+}
+
+MarkdownBulletList {
+    padding: 0 0 0 2;
+}
+
+MarkdownBullet {
+    padding: 0;
+}

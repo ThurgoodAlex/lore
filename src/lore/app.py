@@ -2,6 +2,7 @@
 from textual.app import App, ComposeResult
 from textual.binding import Binding
 from textual.widgets import Static
+from lore.widgets.docs_viewer import DocsViewerPane
 
 class LoreApp(App):
     CSS_PATH = "lore.tcss"
@@ -18,12 +19,12 @@ class LoreApp(App):
 
     def compose(self) -> ComposeResult:
         yield Static("Dashboard", id="dashboard")
-        yield Static("Documentation", id="docs")
+        yield DocsViewerPane(id="docs")
         yield Static("Notes", id="notes")
         yield Static("Agent", id="agent")
         yield Static("Terminal", id="terminal")
         yield Static("Chat", id="chat")
 
     def action_toggle_panel(self, panel_name: str) -> None:
-        panel = self.query_one(f"#{panel_name}", Static)
+        panel = self.query_one(f"#{panel_name}")
         panel.display = not panel.display
