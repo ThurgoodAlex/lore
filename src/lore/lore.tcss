@@ -11,6 +11,23 @@ $surface_light: #2e2b28;
 
 Screen {
     background: $background;
+    scrollbar-size: 0 0;
+}
+
+VerticalScroll {
+    scrollbar-size: 0 0;
+}
+
+Horizontal {
+    scrollbar-size: 0 0;
+}
+
+Markdown {
+    scrollbar-size: 0 0;
+}
+
+ListView {
+    scrollbar-size: 0 0;
 }
 
 Static {
@@ -52,10 +69,6 @@ MarkdownBullet {
 #file_list {
     width: 20;
     background: $surface;
-    scrollbar-size: 1 1;
-    scrollbar-background: $surface;
-    scrollbar-color: $border;
-    scrollbar-color-hover: $text_muted;
 }
 
 #file_list Static {
@@ -89,10 +102,6 @@ MarkdownH3 {
 #doc_scroll {
     background: $surface_light;
     padding: 1 2;
-    scrollbar-size: 1 1;
-    scrollbar-background: $surface_light;
-    scrollbar-color: $border;
-    scrollbar-color-hover: $text_muted;
 }
 
 ListView > ListItem.--highlight {
