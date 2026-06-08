@@ -6,12 +6,15 @@ from textual.widgets import ListView, Markdown, ListItem, Static
 from textual.containers import VerticalScroll, Horizontal
 
 class DocsViewerPane(Widget):
-    
+
+    class CompactListItem(ListItem):
+        DEFAULT_CSS = "CompactListItem { height: 1; padding: 0 1; color: #e8e0d5; }"
+
     def compose(self) -> ComposeResult:
         yield Horizontal(
-            VerticalScroll(ListView()),
+            VerticalScroll(ListView(), id="file_list"),
             VerticalScroll(
-                Markdown("## Documentation Viewer\n\nUse this panel to view documentation files.", id="content")
+                Markdown("## Documentation Viewer\n\nUse this panel to view documentation files.", id="content"), id="doc_scroll"
             )
         )
 
@@ -23,7 +26,7 @@ class DocsViewerPane(Widget):
     def on_mount(self) -> None:
         files = Path(".").rglob("*.md")
         for file in files:
-            item = ListItem(Static(file.name))
+            item = self.CompactListItem(Static(file.name))
             item.file_path = file
             self.query_one(ListView).append(item)
 

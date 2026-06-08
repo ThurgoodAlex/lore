@@ -1,41 +1,111 @@
-$background: #1a1714;   
-$surface:       #252220; 
+$background:    #1a1714;
+$surface:       #252220;
 $border:        #3a3530;
 $text_primary:  #e8e0d5;
-$text_muted:    #8a8078;   
-$accent:        #c4845a;  
+$text_muted:    #8a8078;
+$accent:        #c4845a;
 $accent_alt:    #7a9e7e;
 $warning:       #c9a84c;
-$error:         #b85c4a; 
+$error:         #b85c4a;
+$surface_light: #2e2b28;
 
 Screen {
-    background: $background
+    background: $background;
 }
 
 Static {
     background: $surface;
     color: $text_primary;
-    border: tall $border;
-    padding: 1 2
+    padding: 1 2;
 }
 
 ListView {
     padding: 0;
+    border: none;
 }
 
 ListItem {
     padding: 0 1;
+    border: none;
 }
 
+ListItem:hover {
+    background: $surface;
+}
+
+
 MarkdownBlock {
-    padding: 0;
     border: none;
+    padding: 0;
+    margin: 0;
 }
 
 MarkdownBulletList {
     padding: 0 0 0 2;
+    margin: 0;
 }
 
 MarkdownBullet {
     padding: 0;
 }
+
+#file_list {
+    width: 20;
+    background: $surface;
+    scrollbar-size: 1 1;
+    scrollbar-background: $surface;
+    scrollbar-color: $border;
+    scrollbar-color-hover: $text_muted;
+}
+
+#file_list Static {
+    padding: 0 1;
+    border: none;
+    height: 1;
+    background: transparent;
+}
+
+DocsViewerPane {
+    overflow: hidden;
+    border: none;
+}
+
+DocsViewerPane:focus-within {
+    border: solid $text_muted;
+}
+
+MarkdownH1 {
+    color: $accent;
+}
+
+MarkdownH2 {
+    color: $accent;
+}
+
+MarkdownH3 {
+    color: $accent_alt;
+}
+
+#doc_scroll {
+    background: $surface_light;
+    padding: 1 2;
+    scrollbar-size: 1 1;
+    scrollbar-background: $surface_light;
+    scrollbar-color: $border;
+    scrollbar-color-hover: $text_muted;
+}
+
+ListView > ListItem.--highlight {
+    background: $accent;
+    color: $background;
+}
+
+MarkdownTable {
+    border: none;
+}
+
+MarkdownBlockQuote {
+      border-left: solid $accent;
+      padding: 0 1;
+      margin: 0;
+  }
