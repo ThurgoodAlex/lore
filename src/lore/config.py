@@ -17,6 +17,8 @@ from typing import List
 import toml
 
 
+
+
 @dataclass
 class ModelConfig:
     agent: str = "qwen3.6:35b"
@@ -70,6 +72,11 @@ class Config:
     context: ContextConfig = field(default_factory=ContextConfig)
     root: Path = field(default_factory=Path.cwd)
 
+
+    @property
+    def dashboard_cache_path(self) -> Path:
+        return self.lore_dir / "dashboard_cache.md"
+    
     @property
     def lore_dir(self) -> Path:
         return self.root / ".lore"

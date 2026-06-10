@@ -7,6 +7,8 @@ import hashlib
 from pathlib import Path
 
 from lore.config import _find_project_root, load_config, write_default_config
+from lore.context.builder import build_prompt
+from lore.context.retriever import retrieve
 from lore.storage.chroma import init_chroma
 from lore.storage.db import Commit, init_db, upsert_file, Session, IndexedFile
 from lore.ingestion.chunker import chunk_file
@@ -94,6 +96,15 @@ def index():
             upsert_chunks(_get_suffix(chunks), ids, embeddings, documents, metadatas)
             upsert_file(str(path), content_hash, chunks[0].source_type, chunks[0].language, len(chunks))
     typer.echo("Indexing complete.")
+    relevant_chunks = retrieve("What are the current milestones and what should I work on next?", cfg)
+    prompt = build_prompt(relevant_chunks, "What are the current milestones and what should I work on next?")
+    response = ollama.generate(
+        model=cfg.model.watch,
+        prompt=prompt,
+        options={"temperature": 0, "num_predict": 600},
+    )
+    cfg.dashboard_cache_path.write_text(response['response'].strip(), encoding="utf-8")
+    typer.echo("Dashboard cache updated.")
 
 @app.command()
 def status():

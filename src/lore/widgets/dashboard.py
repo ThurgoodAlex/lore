@@ -23,10 +23,15 @@ class DashboardPane(Widget):
 
     async def load_dashboard(self) -> None:
         config = self.app.config
+        if config.dashboard_cache_path.exists():
+            cached = config.dashboard_cache_path.read_text(encoding="utf-8")
+            self.query_one("#dashboard_content", Markdown).update(cached)
+            return
         results = retrieve("What are the current milestones and what should I work on next?", config)
         prompt = build_prompt(results, "What are the current milestones and what should I work on next?")
         response = ollama.generate(
             model=config.model.watch,
             prompt=prompt,
+            options={"temperature": 0, "num_predict": 1000},
         )
         self.query_one("#dashboard_content", Markdown).update(response['response'].strip())
