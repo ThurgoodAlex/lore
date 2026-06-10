@@ -45,8 +45,9 @@ def _initialize():
 
 
 def _is_ignored(path: Path, ignore_patterns: list[str]) -> bool:
+    path_str = str(path)
     for pattern in ignore_patterns:
-        if fnmatch.fnmatch(path.name, pattern) or pattern.rstrip("/") in path.parts:
+        if fnmatch.fnmatch(path.name, pattern) or pattern.rstrip("/") in path_str:
             return True
     return False
 

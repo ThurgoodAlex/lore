@@ -19,8 +19,8 @@ import toml
 
 @dataclass
 class ModelConfig:
-    agent: str = "qwen2.5-coder:14b"
-    watch: str = "qwen2.5-coder:7b"
+    agent: str = "qwen3.6:35b"
+    watch: str = "qwen2.5-coder:14b"
     embed: str = "nomic-embed-text"
     ollama_url: str = "http://localhost:11434"
 
@@ -32,9 +32,13 @@ class IndexingConfig:
     chunk_size: int = 512
     chunk_overlap: int = 50
     ignore: List[str] = field(default_factory=lambda: [
-        "node_modules/", "__pycache__/", "dist/", ".next/", "*.lock"
+        "node_modules/", "__pycache__/", "dist/", ".next/", "*.lock", "*.db", "*.sqlite3", ".lore/", ".git/"
     ])
 
+@dataclass
+class ContextConfig:
+    top_k: int = 6
+    similarity_threshold: float = 0.3
 
 @dataclass
 class AgentConfig:
@@ -63,6 +67,7 @@ class Config:
     indexing: IndexingConfig = field(default_factory=IndexingConfig)
     agent: AgentConfig = field(default_factory=AgentConfig)
     watch: WatchConfig = field(default_factory=WatchConfig)
+    context: ContextConfig = field(default_factory=ContextConfig)
     root: Path = field(default_factory=Path.cwd)
 
     @property

@@ -118,3 +118,8 @@ MarkdownBlockQuote {
       padding: 0 1;
       margin: 0;
   }
+
+DashboardPane {
+    height: 100%;
+    width: 100%;
+}
