@@ -3,7 +3,7 @@ import ollama
 from textual.app import ComposeResult
 from textual.widget import Widget
 from textual.widgets import Markdown, Static
-from textual.containers import Vertical
+from textual.containers import VerticalScroll
 
 from lore.context.builder import build_prompt
 from lore.context.retriever import retrieve
@@ -13,10 +13,10 @@ from lore.context.retriever import retrieve
 class DashboardPane(Widget):
 
     def compose(self) -> ComposeResult:
-        yield Vertical(
-            Static("Dashboard", id="dashboard_header"),
-            Markdown("*Loading workspace summary...*", id="dashboard_content"),
-        )
+      yield Static("Dashboard", id="dashboard_header")
+      yield VerticalScroll(
+          Markdown("*Loading workspace summary...*", id="dashboard_content"),
+      )
     
     def on_mount(self) -> None:
         self.run_worker(self.load_dashboard)

@@ -123,3 +123,17 @@ DashboardPane {
     height: 100%;
     width: 100%;
 }
+
+DashboardPane VerticalScroll {
+      height: 1fr;
+      background: $background;
+      padding: 1 2;
+  }
+
+DashboardPane Markdown {
+      height: 100%;
+  }
+
+#docs, #notes, #agent, #terminal, #chat {
+    display: none;
+}
